@@ -1,0 +1,158 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Employee-Management",
+		"_postman_id": "98b58c8f-d4aa-723a-7fee-a75cb66d3a38",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Employees List",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/list",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/getById/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Name",
+			"request": {
+				"url": {
+					"raw": "http://localhost:2030/EmployeeManagement/employee/getByName?name=Anil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2030",
+					"path": [
+						"EmployeeManagement",
+						"employee",
+						"getByName"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Anil",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employee",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"empName\":\"Chinnodu\",\r\n      \"role\":\"New CEO\",\r\n      \"salary\":10000000,\r\n      \"dateOfBirth\":\"2022-04-19T00:00:00.000+00:00\",\r\n      \"mobileNumber\":\"123456789\",\r\n      \"email\":\"chinnodu@gmail.com\"\r\n   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employees list",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/addList",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n    \"empName\":\"AAAA\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1985-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"aaaa@gmail.com\"\n\t},\n\t{\n    \"empName\":\"BBBB\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1987-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"bbbb@gmail.com\"\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/update",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"empId\": 1,\r\n\t\"empName\": \"Anil 123\",\r\n\t\"role\": \"TA\",\r\n\t\"salary\": 22222,\r\n\t\"dateOfBirth\": \"1990-05-11T00:00:00.000+00:00\",\r\n\t\"mobileNumber\": \"123456789\",\r\n\t\"email\": \"anil@gmail.com\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/delete/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/deleteAll",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Dummy Data",
+			"request": {
+				"url": "http://localhost:2030/EmployeeManagement/employee/dummyData",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

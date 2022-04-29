@@ -1,0 +1,147 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EmployeeServiceDataConsumer",
+		"_postman_id": "7619a225-6017-a1ba-5c64-87e39482965b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Employees List",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/list",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/getById/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Name",
+			"request": {
+				"url": {
+					"raw": "http://localhost:2031/EmployeeServiceDataConsumer/employee/getByName?name=Anil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2031",
+					"path": [
+						"EmployeeServiceDataConsumer",
+						"employee",
+						"getByName"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Anil",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employee",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"empName\":\"Chinnodu\",\r\n      \"role\":\"New CEO\",\r\n      \"salary\":10000000,\r\n      \"dateOfBirth\":\"2022-04-19T00:00:00.000+00:00\",\r\n      \"mobileNumber\":\"123456789\",\r\n      \"email\":\"chinnodu@gmail.com\"\r\n   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employees list",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/addList",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n    \"empName\":\"AAAA\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1985-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"aaaa@gmail.com\"\n\t},\n\t{\n    \"empName\":\"BBBB\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1987-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"bbbb@gmail.com\"\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/update",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"empId\": 1,\r\n\t\"empName\": \"Anil 123\",\r\n\t\"role\": \"TA\",\r\n\t\"salary\": 22222,\r\n\t\"dateOfBirth\": \"1990-05-11T00:00:00.000+00:00\",\r\n\t\"mobileNumber\": \"123456789\",\r\n\t\"email\": \"anil@gmail.com\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/delete/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All",
+			"request": {
+				"url": "http://localhost:2031/EmployeeServiceDataConsumer/employee/deleteAll",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
