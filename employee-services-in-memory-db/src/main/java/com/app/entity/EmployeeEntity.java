@@ -1,6 +1,7 @@
 package com.app.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,7 +47,7 @@ public class EmployeeEntity implements Serializable {
 	private double salary;
 
 	@Column(name = "DATE_OF_BIRTH")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	@Column(name = "MOBILE_NUMBER")
 	private String mobileNumber;

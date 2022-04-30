@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.util.List;
 
+import com.app.model.ApiResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,35 +14,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.model.Employee;
-import com.app.util.ResponseStatus;
 
 @RequestMapping("/employee")
 public interface EmployeeController {
 
 	@GetMapping({ "/list", "/all", "/employees" })
-	public List<Employee> getEmployeeList();
+	public ResponseEntity<ApiResponse<List<Employee>>> getEmployeeList();
 
 	@GetMapping("/getById/{id}")
-	public Employee getEmployee(@PathVariable(value = "id") int employeeId);
+	public ResponseEntity<ApiResponse> getEmployee(@PathVariable(value = "id") String employeeId);
 	
 	@GetMapping("/getByName")
-	public Employee getEmployeeByName(@RequestParam String name);
+	public ResponseEntity<ApiResponse> getEmployeeByName(@RequestParam String name);
 
 	@PostMapping("/add")
-	public ResponseStatus addEmployee(@RequestBody Employee employee);
+	public ResponseEntity<ApiResponse> addEmployee(@RequestBody Employee employee);
 
 	@PostMapping("/addList")
-	public ResponseStatus addEmployees(@RequestBody List<Employee> employees);
+	public ResponseEntity<ApiResponse> addEmployees(@RequestBody List<Employee> employees);
 
 	@PutMapping("/update")
-	public ResponseStatus updateEmployee(@RequestBody Employee employee);
+	public ResponseEntity<ApiResponse> updateEmployee(@RequestBody Employee employee);
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseStatus deleteEmployee(@PathVariable(value = "id") int employeeId);
+	public ResponseEntity<ApiResponse> deleteEmployee(@PathVariable(value = "id") String employeeId);
 
 	@DeleteMapping("/deleteAll")
-	public ResponseStatus deleteAll();
+	public ResponseEntity<ApiResponse> deleteAll();
 
 	@GetMapping("/dummyData")
-	public ResponseStatus addDummyData();
+	public ResponseEntity<ApiResponse> addDummyData();
 }

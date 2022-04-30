@@ -2,27 +2,27 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.model.ApiResponse;
 import com.app.model.Employee;
-import com.app.util.ResponseStatus;
 
 public interface EmployeeService {
 
 	public List<Employee> getEmployeeList();
 
-	public Employee getEmployee(int employeeId);
+	public ApiResponse<Employee> getEmployee(String employeeId);
 
-	public ResponseStatus addEmployee(Employee employee);
+	public ApiResponse<Employee> getEmployeeByName(String firstName);
 
-	public ResponseStatus addEmployees(List<Employee> employees);
+	public ApiResponse addEmployee(Employee employee);
 
-	public ResponseStatus updateEmployee(Employee employee);
+	public ApiResponse addEmployees(List<Employee> employees);
 
-	public ResponseStatus deleteEmployee(int employeeId);
+	public ApiResponse updateEmployee(Employee employee);
 
-	public ResponseStatus deleteAll();
+	public ApiResponse deleteEmployee(String employeeId);
 
-	public Employee getEmployeeByName(String name);
+	public ApiResponse deleteAll();
 
-	public ResponseStatus addDummyData();
+	public ApiResponse addDummyData();
 	
 }

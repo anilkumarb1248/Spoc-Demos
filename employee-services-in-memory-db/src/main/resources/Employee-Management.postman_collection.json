@@ -75,7 +75,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"empName\":\"Chinnodu\",\r\n      \"role\":\"New CEO\",\r\n      \"salary\":10000000,\r\n      \"dateOfBirth\":\"2022-04-19T00:00:00.000+00:00\",\r\n      \"mobileNumber\":\"123456789\",\r\n      \"email\":\"chinnodu@gmail.com\"\r\n   }"
+					"raw": "{\r\n      \"empName\":\"Chinnodu\",\r\n      \"role\":\"New CEO\",\r\n      \"salary\":10000000,\r\n      \"dateOfBirth\":\"2022-04-19\",\r\n      \"mobileNumber\":\"123456789\",\r\n      \"email\":\"chinnodu@gmail.com\"\r\n   }"
 				},
 				"description": ""
 			},
@@ -95,7 +95,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n\t{\n    \"empName\":\"AAAA\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1985-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"aaaa@gmail.com\"\n\t},\n\t{\n    \"empName\":\"BBBB\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1987-04-19T00:00:00.000+00:00\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"bbbb@gmail.com\"\n\t}\n]"
+					"raw": "[\n\t{\n    \"empName\":\"AAAA\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1985-04-19\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"aaaa@gmail.com\"\n\t},\n\t{\n    \"empName\":\"BBBB\",\n    \"role\":\"SE\",\n    \"salary\":10000,\n    \"dateOfBirth\":\"1987-04-19\",\n    \"mobileNumber\":\"123456789\",\n    \"email\":\"bbbb@gmail.com\"\n\t}\n]"
 				},
 				"description": ""
 			},
@@ -115,7 +115,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"empId\": 1,\r\n\t\"empName\": \"Anil 123\",\r\n\t\"role\": \"TA\",\r\n\t\"salary\": 22222,\r\n\t\"dateOfBirth\": \"1990-05-11T00:00:00.000+00:00\",\r\n\t\"mobileNumber\": \"123456789\",\r\n\t\"email\": \"anil@gmail.com\"\r\n}"
+					"raw": "{\r\n\t\"empId\": 1,\r\n\t\"empName\": \"Anil 123\",\r\n\t\"role\": \"TA\",\r\n\t\"salary\": 22222,\r\n\t\"dateOfBirth\": \"1990-05-11\",\r\n\t\"mobileNumber\": \"123456789\",\r\n\t\"email\": \"anil@gmail.com\"\r\n}"
 				},
 				"description": ""
 			},

@@ -8,27 +8,26 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.app.exceptions.DuplicateEmployeeException;
 import com.app.exceptions.EmployeeNotFoundException;
-import com.app.util.ErrorResponse;
 
 @RestControllerAdvice
 public class EmployeeExceptionHandler {
 
-	@ExceptionHandler(value = { DuplicateEmployeeException.class })
-	@ResponseStatus(HttpStatus.CONFLICT)
-	public ResponseEntity<ErrorResponse> handleDuplicateEmployeeException(DuplicateEmployeeException ex) {
-		ErrorResponse errorResponse = new ErrorResponse();
-		errorResponse.setStatusCode(String.valueOf(HttpStatus.CONFLICT.value()));
-		errorResponse.setErrorMessage(ex.getMessage());
-		return ResponseEntity.ok(errorResponse);
-	}
-
-	@ExceptionHandler(value = { EmployeeNotFoundException.class })
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
-		ErrorResponse errorResponse = new ErrorResponse();
-		errorResponse.setStatusCode(String.valueOf(HttpStatus.NO_CONTENT.value()));
-		errorResponse.setErrorMessage(ex.getMessage());
-		return ResponseEntity.ok(errorResponse);
-	}
+//	@ExceptionHandler(value = { DuplicateEmployeeException.class })
+//	@ResponseStatus(HttpStatus.CONFLICT)
+//	public ResponseEntity<ErrorResponse> handleDuplicateEmployeeException(DuplicateEmployeeException ex) {
+//		ErrorResponse errorResponse = new ErrorResponse();
+//		errorResponse.setStatusCode(String.valueOf(HttpStatus.CONFLICT.value()));
+//		errorResponse.setErrorMessage(ex.getMessage());
+//		return ResponseEntity.ok(errorResponse);
+//	}
+//
+//	@ExceptionHandler(value = { EmployeeNotFoundException.class })
+//	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	public ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
+//		ErrorResponse errorResponse = new ErrorResponse();
+//		errorResponse.setStatusCode(String.valueOf(HttpStatus.NO_CONTENT.value()));
+//		errorResponse.setErrorMessage(ex.getMessage());
+//		return ResponseEntity.ok(errorResponse);
+//	}
 
 }
