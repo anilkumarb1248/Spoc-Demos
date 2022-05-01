@@ -16,7 +16,7 @@ import spock.lang.Unroll
 
 import java.time.LocalDate
 
-class EmployeeControllerSpec extends Specification{
+class EmployeeControllerSpec extends Specification {
 
     def employeeService = Mock(EmployeeServiceImpl.class)
 
@@ -24,10 +24,10 @@ class EmployeeControllerSpec extends Specification{
     def employeeController = new EmployeeControllerImpl(employeeService)
 
     @Shared
-    Employee mockEmployee = new Employee(empId: 100,empName: "testName", role: "testRole", salary: 10000, mobileNumber: "1234567890", email: "abc@test.com", dateOfBirth: LocalDate.now())
+    Employee mockEmployee = new Employee(empId: 100, empName: "testName", role: "testRole", salary: 10000, mobileNumber: "1234567890", email: "abc@test.com", dateOfBirth: LocalDate.now())
 
     // Common helper method to assert the employee details (mockEmployee) from different feature methods
-    void assertEmployeeDetails(employee){
+    void assertEmployeeDetails(employee) {
         assert employee.empId == 100
         assert employee.empName == "testName"
         assert employee.role == "testRole"
@@ -37,13 +37,13 @@ class EmployeeControllerSpec extends Specification{
         assert employee.dateOfBirth == LocalDate.now()
     }
 
-    def "getEmployeeList - verify successful operation to fetch all employees"(){
+    def "getEmployeeList - verify successful operation to fetch all employees"() {
         given:
         List mockResponse = new ArrayList()
         mockResponse.add(mockEmployee)
 
         when:
-        ResponseEntity<ApiResponse<List<Employee>>> responseEntity =  employeeController.getEmployeeList()
+        ResponseEntity<ApiResponse<List<Employee>>> responseEntity = employeeController.getEmployeeList()
 
         then:
         1 * employeeService.getEmployeeList() >> mockResponse
@@ -57,7 +57,7 @@ class EmployeeControllerSpec extends Specification{
         employeesList
         employeesList.size() == 1
 
-//        employeesList[0].empId == 1
+//        employeesList[0].empId == 100
 //        employeesList[0].empName == "testName"
 //        employeesList[0].role == "testRole"
 //        employeesList[0].salary == 10000
@@ -71,9 +71,9 @@ class EmployeeControllerSpec extends Specification{
     }
 
     @Unroll
-    def "Fetch all employees failure scenario when service returns #condition"(){
+    def "Fetch all employees failure scenario when service returns #condition"() {
         when:
-        ResponseEntity<ApiResponse<List<Employee>>> responseEntity =  employeeController.getEmployeeList()
+        ResponseEntity<ApiResponse<List<Employee>>> responseEntity = employeeController.getEmployeeList()
 
         then:
         1 * employeeService.getEmployeeList() >> response
@@ -89,18 +89,18 @@ class EmployeeControllerSpec extends Specification{
 
         where:
         condition | response
-        "null" | null
-        "empty" | new ArrayList<>()
+        "null"    | null
+        "empty"   | new ArrayList<>()
     }
 
-    def "getEmployee success scenario"(){
+    def "getEmployee success scenario"() {
         given:
         def employeeId = "100"
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
         apiResponse.setPayload(mockEmployee)
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployee(employeeId)
 
         then:
         1 * employeeService.getEmployee(employeeId) >> apiResponse
@@ -110,20 +110,19 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.statusCode == HttpStatus.OK
         responseEntity.getBody()
         responseEntity.getBody().payload
-//        Making the assertions in the helper method
+        //Making the assertions in the helper method
         assertEmployeeDetails(responseEntity.getBody().payload)
-
     }
 
-    def "getEmployee failure scenario when service throws not found exception"(){
+    def "getEmployee failure scenario when service throws not found exception"() {
         given:
         def employeeId = "100"
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployee(employeeId)
 
         then:
-        1 * employeeService.getEmployee(employeeId) >> {throw new EmployeeNotFoundException("Employee not found with given id")}
+        1 * employeeService.getEmployee(employeeId) >> { throw new EmployeeNotFoundException("Employee not found with given id") }
 
         expect:
         responseEntity
@@ -135,10 +134,10 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "Get employee by id failed"
     }
 
-    def "getEmployee bad request scenario when employee id: #condition"(){
+    def "getEmployee bad request scenario when employee id: #condition"() {
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployee(employeeId)
 
         then:
         0 * employeeService.getEmployee(employeeId)
@@ -153,20 +152,20 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "BAD_REQUEST"
 
         where:
-        condition | employeeId
-        "empty" | "  "
-        "null" | null
+        condition     | employeeId
+        "empty"       | "  "
+        "null"        | null
         "non numeric" | "abcd"
     }
 
-    def "getEmployeeByName success scenario"(){
+    def "getEmployeeByName success scenario"() {
         given:
         def name = "testName"
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
         apiResponse.setPayload(mockEmployee)
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployeeByName(name)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployeeByName(name)
 
         then:
         1 * employeeService.getEmployeeByName(name) >> apiResponse
@@ -181,15 +180,15 @@ class EmployeeControllerSpec extends Specification{
 
     }
 
-    def "getEmployeeByName failure scenario when service throws not found exception"(){
+    def "getEmployeeByName failure scenario when service throws not found exception"() {
         given:
         def name = "testName"
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployeeByName(name)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployeeByName(name)
 
         then:
-        1 * employeeService.getEmployeeByName(name) >> {throw new EmployeeNotFoundException("Employee not found with given name")}
+        1 * employeeService.getEmployeeByName(name) >> { throw new EmployeeNotFoundException("Employee not found with given name") }
 
         expect:
         responseEntity
@@ -201,10 +200,10 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "Get employee by name failed"
     }
 
-    def "getEmployeeByName bad request scenario when employee id: #condition"(){
+    def "getEmployeeByName bad request scenario when employee id: #condition"() {
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.getEmployeeByName(name)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.getEmployeeByName(name)
 
         then:
         0 * employeeService.getEmployeeByName(name)
@@ -220,17 +219,17 @@ class EmployeeControllerSpec extends Specification{
 
         where:
         condition | name
-        "empty" | "  "
-        "null" | null
+        "empty"   | "  "
+        "null"    | null
     }
 
-    def "addEmployee success scenario"(){
+    def "addEmployee success scenario"() {
         given:
         ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setStatus(new Status("201","Employee added successfully"));
+        apiResponse.setStatus(new Status("201", "Employee added successfully"));
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.addEmployee(mockEmployee)
+        ResponseEntity<ApiResponse> responseEntity = employeeController.addEmployee(mockEmployee)
 
         then:
         1 * employeeService.addEmployee(mockEmployee) >> apiResponse
@@ -244,15 +243,15 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().status.message == "Employee added successfully"
     }
 
-    def "addEmployee failure scenario when service returns duplicate employee exception"(){
+    def "addEmployee failure scenario when service returns duplicate employee exception"() {
         given:
         def duplicateException = new DuplicateEmployeeException("Duplicate employee details")
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.addEmployee(mockEmployee)
+        ResponseEntity<ApiResponse> responseEntity = employeeController.addEmployee(mockEmployee)
 
         then:
-        1 * employeeService.addEmployee(mockEmployee) >> {throw duplicateException}
+        1 * employeeService.addEmployee(mockEmployee) >> { throw duplicateException }
 
         expect:
         responseEntity
@@ -264,13 +263,13 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "CONFLICT"
     }
 
-    def "updateEmployee success scenario"(){
+    def "updateEmployee success scenario"() {
         given:
         ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setStatus(new Status("200","Employee updated successfully"));
+        apiResponse.setStatus(new Status("200", "Employee updated successfully"));
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.updateEmployee(mockEmployee)
+        ResponseEntity<ApiResponse> responseEntity = employeeController.updateEmployee(mockEmployee)
 
         then:
         1 * employeeService.updateEmployee(mockEmployee) >> apiResponse
@@ -284,15 +283,15 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().status.message == "Employee updated successfully"
     }
 
-    def "updateEmployee failure scenario when service return employee not found exception"(){
+    def "updateEmployee failure scenario when service return employee not found exception"() {
         given:
         def employeeNotFoundException = new EmployeeNotFoundException("Employee not found with given details")
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.updateEmployee(mockEmployee)
+        ResponseEntity<ApiResponse> responseEntity = employeeController.updateEmployee(mockEmployee)
 
         then:
-        1 * employeeService.updateEmployee(mockEmployee) >> {throw employeeNotFoundException}
+        1 * employeeService.updateEmployee(mockEmployee) >> { throw employeeNotFoundException }
 
         expect:
         responseEntity
@@ -304,14 +303,14 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "FAILED_DEPENDENCY"
     }
 
-    def "deleteEmployee success scenario"(){
+    def "deleteEmployee success scenario"() {
         given:
         def employeeId = "100"
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
         apiResponse.setPayload(mockEmployee)
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.deleteEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.deleteEmployee(employeeId)
 
         then:
         1 * employeeService.deleteEmployee(employeeId) >> apiResponse
@@ -326,15 +325,15 @@ class EmployeeControllerSpec extends Specification{
 
     }
 
-    def "deleteEmployee failure scenario when service throws not found exception"(){
+    def "deleteEmployee failure scenario when service throws not found exception"() {
         given:
         def employeeId = "100"
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.deleteEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.deleteEmployee(employeeId)
 
         then:
-        1 * employeeService.deleteEmployee(employeeId) >> {throw new EmployeeNotFoundException("Employee not found with given id")}
+        1 * employeeService.deleteEmployee(employeeId) >> { throw new EmployeeNotFoundException("Employee not found with given id") }
 
         expect:
         responseEntity
@@ -346,10 +345,10 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "Delete employee by id failed"
     }
 
-    def "deleteEmployee bad request scenario when employee id: #condition"(){
+    def "deleteEmployee bad request scenario when employee id: #condition"() {
 
         when:
-        ResponseEntity<ApiResponse<Employee>> responseEntity =  employeeController.deleteEmployee(employeeId)
+        ResponseEntity<ApiResponse<Employee>> responseEntity = employeeController.deleteEmployee(employeeId)
 
         then:
         0 * employeeService.deleteEmployee(employeeId)
@@ -364,19 +363,19 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().error.errorDesc == "BAD_REQUEST"
 
         where:
-        condition | employeeId
-        "empty" | "  "
-        "null" | null
+        condition     | employeeId
+        "empty"       | "  "
+        "null"        | null
         "non numeric" | "abcd"
     }
 
-    def "verify addEmployees method call"(){
+    def "verify addEmployees method call"() {
         given:
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
-        apiResponse.setStatus(new Status("201","Employees list added successfully"))
+        apiResponse.setStatus(new Status("201", "Employees list added successfully"))
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.addEmployees(new ArrayList<Employee>())
+        ResponseEntity<ApiResponse> responseEntity = employeeController.addEmployees(new ArrayList<Employee>())
 
         then:
         1 * employeeService.addEmployees(_) >> apiResponse
@@ -390,13 +389,13 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().status.message == "Employees list added successfully"
     }
 
-    def "verify deleteAll method call"(){
+    def "verify deleteAll method call"() {
         given:
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
-        apiResponse.setStatus(new Status("200","Successfully deleted all records"))
+        apiResponse.setStatus(new Status("200", "Successfully deleted all records"))
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.deleteAll()
+        ResponseEntity<ApiResponse> responseEntity = employeeController.deleteAll()
 
         then:
         1 * employeeService.deleteAll() >> apiResponse
@@ -410,13 +409,13 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().status.message == "Successfully deleted all records"
     }
 
-    def "verify addDummyData success scenario"(){
+    def "verify addDummyData success scenario"() {
         given:
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
-        apiResponse.setStatus(new Status("200","Dummy data added successfully"))
+        apiResponse.setStatus(new Status("200", "Dummy data added successfully"))
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.addDummyData()
+        ResponseEntity<ApiResponse> responseEntity = employeeController.addDummyData()
 
         then:
         1 * employeeService.addDummyData() >> apiResponse
@@ -430,13 +429,13 @@ class EmployeeControllerSpec extends Specification{
         responseEntity.getBody().status.message == "Dummy data added successfully"
     }
 
-    def "verify addDummyData failure scenario"(){
+    def "verify addDummyData failure scenario"() {
         given:
         ApiResponse<Employee> apiResponse = new ApiResponse<>()
         apiResponse.setError(new Error("500", "Failed to add dummy data", "Internal Server error"))
 
         when:
-        ResponseEntity<ApiResponse> responseEntity =  employeeController.addDummyData()
+        ResponseEntity<ApiResponse> responseEntity = employeeController.addDummyData()
 
         then:
         1 * employeeService.addDummyData() >> apiResponse

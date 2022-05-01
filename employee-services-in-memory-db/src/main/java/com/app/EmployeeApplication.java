@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.app.service.EmployeeService;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class EmployeeApplication implements ApplicationRunner {
 
 	@Autowired

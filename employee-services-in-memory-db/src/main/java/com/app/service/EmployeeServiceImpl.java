@@ -38,14 +38,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		this.employeeRepository = employeeRepository;
 	}
 
-
 	@Override
 	public List<Employee> getEmployeeList() {
 		List<EmployeeEntity> entitiesList = employeeRepository.findAll();
 		List<Employee> employeesList = new ArrayList<>();
-		entitiesList.stream().forEach(employeeEntity -> {
-			employeesList.add(convertToBean(employeeEntity));
-		});
+		if(null != entitiesList && entitiesList.size() > 0){
+			entitiesList.stream().forEach(employeeEntity -> {
+				employeesList.add(convertToBean(employeeEntity));
+			});
+		}
 		return employeesList;
 	}
 
@@ -84,7 +85,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			if (null != emp) {
 				return createApiResponse("SUCCESS",HttpStatus.CREATED, "Employee added successfully", null);
 			} else {
-				return createApiResponse("FAILURE", HttpStatus.INTERNAL_SERVER_ERROR, "Failed to add Employee", HttpStatus.INTERNAL_SERVER_ERROR.toString());
+				return createApiResponse("FAILURE", HttpStatus.INTERNAL_SERVER_ERROR, "Failed to add Employee", HttpStatus.INTERNAL_SERVER_ERROR.name());
 			}
 		} else {
 			throw new DuplicateEmployeeException("Employee already exist with name: " + employee.getEmpName());
