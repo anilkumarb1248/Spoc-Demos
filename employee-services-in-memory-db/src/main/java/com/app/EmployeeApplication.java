@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.app.service.EmployeeService;
 
-//@SpringBootApplication
+@SpringBootApplication
 public class EmployeeApplication implements ApplicationRunner {
 
 	@Autowired
@@ -20,6 +20,8 @@ public class EmployeeApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		employeeService.addDummyData();
+		if(null != employeeService){
+			employeeService.addDummyData();
+		}
 	}
 }

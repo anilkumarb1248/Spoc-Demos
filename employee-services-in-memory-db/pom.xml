@@ -103,11 +103,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.junit.jupiter</groupId>-->
+<!--			<artifactId>junit-jupiter-engine</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
@@ -117,8 +117,11 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
 					<compilerVersion>${java.version}</compilerVersion>
 					<release>${java.version}</release>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 
@@ -165,7 +168,7 @@
 						<goals>
 							<goal>addTestSources</goal>
 							<goal>compileTests</goal>
-							<goal>execute</goal>
+<!--							<goal>execute</goal>-->
 						</goals>
 					</execution>
 				</executions>
@@ -174,13 +177,14 @@
 						<source>
 							<directory>${project.basedir}/src/main/java</directory>
 							<includes>
+								<include>**/*.java</include>
 								<include>**/*.groovy</include>
 							</includes>
 						</source>
 					</sources>
 					<testSources>
 						<testSource>
-							<directory>${project.basedir}/src/test/groovy</directory>
+							<directory>${project.basedir}/src/test/java</directory>
 							<includes>
 								<include>**/*.groovy</include>
 							</includes>
@@ -189,11 +193,11 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>3.0.0-M6</version>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-failsafe-plugin</artifactId>-->
+<!--				<version>3.0.0-M6</version>-->
+<!--			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
