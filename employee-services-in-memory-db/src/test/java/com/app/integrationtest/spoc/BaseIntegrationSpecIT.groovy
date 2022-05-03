@@ -1,5 +1,6 @@
-package com.app
+package com.app.integrationtest.spoc
 
+import com.app.EmployeeApplication
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -9,9 +10,9 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.test.context.TestPropertySource
 import org.springframework.util.MultiValueMap
 import org.springframework.web.util.UriComponentsBuilder
+import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(
@@ -27,13 +28,17 @@ class BaseIntegrationSpecIT extends Specification {
     @LocalServerPort
     int port
 
+    @Shared
+    String CONTEXT_PATH = "/EmployeeManagement/"
+
+
     URI buildUri(String resource) {
         return buildUri(resource, null)
     }
 
     URI buildUri(String resource, MultiValueMap<String, String> queryParams) {
-        return UriComponentsBuilder.fromUriString("http://localhost:" + port + "/EmployeeManagement/" + resource)
-                .queryParam(queryParams)
+        return UriComponentsBuilder.fromUriString("http://localhost:" + port + CONTEXT_PATH + resource)
+                .queryParams(queryParams)
                 .build(false)
                 .encode()
                 .toUri()

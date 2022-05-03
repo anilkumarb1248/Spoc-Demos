@@ -6,6 +6,7 @@ import com.app.exceptions.DuplicateEmployeeException;
 import com.app.exceptions.EmployeeNotFoundException;
 import com.app.model.ApiResponse;
 import com.app.model.Error;
+import com.app.model.Status;
 import com.app.util.EmpCommonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class EmployeeControllerImpl implements EmployeeController {
         if(null == employeeList || employeeList.isEmpty()){
             apiResponse.setError(new Error(String.valueOf(HttpStatus.NOT_FOUND.value()), "Employee table is empty", HttpStatus.NOT_FOUND.name()));
         }else{
+            apiResponse.setStatus(new Status("200", "Returning employee records successfully"));
             apiResponse.setPayload(employeeList);
         }
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
